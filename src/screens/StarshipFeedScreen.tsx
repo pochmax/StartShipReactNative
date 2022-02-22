@@ -4,6 +4,7 @@ import { Card, Paragraph, Title, Colors } from 'react-native-paper';
 
 import { default as data } from "../../api/data.json";
 import { StarShipCard } from "../components/StarShipCard";
+import { useStarships } from "../hook/UseStarships";
 
 
 
@@ -15,22 +16,31 @@ const renderItem = ({item}) => {
 };
 
 export const StarshipFeedScreen = () => {
+    const { isLoading, isError, data } = useStarships();
 
+    if(isLoading){
+      return <Text>Les données chargent</Text>
+    }
+  
+    if(isError){
+      return <Text>Erreur sur les données</Text>
+    }
     
     const datas = data.results;
-  return (
-    <SafeAreaView style={styles.safeContainer}>
-        <View style={styles.container}>
-            {/* <Text>{JSON.stringify(data.results)}</Text> */}
-            <FlatList
-                data={datas}
-                renderItem={renderItem}
-                keyExtractor={item => item.name}
 
-            />
-        </View>
-    </SafeAreaView>
-  );
+    return (
+        <SafeAreaView style={styles.safeContainer}>
+            <View style={styles.container}>
+                {/* <Text>{JSON.stringify(data.results)}</Text> */}
+                <FlatList
+                    data={datas}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.name}
+
+                />
+            </View>
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
