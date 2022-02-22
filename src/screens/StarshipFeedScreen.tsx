@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, Image } from "react-native";
 import { Card, Paragraph, Title, Colors } from 'react-native-paper';
 
-import { default as data } from "../../api/data.json";
+// import { default as data } from "../../api/data.json";
 import { StarShipCard } from "../components/StarShipCard";
 import { useStarships } from "../hook/UseStarships";
 
@@ -19,11 +19,15 @@ export const StarshipFeedScreen = () => {
     const { isLoading, isError, data } = useStarships();
 
     if(isLoading){
-      return <Text>Les données chargent</Text>
+      return <SafeAreaView>
+          <Text>Les données chargent</Text>
+        </SafeAreaView>
     }
   
     if(isError){
-      return <Text>Erreur sur les données</Text>
+      return <SafeAreaView>
+          <Text>Erreur sur les données</Text>
+      </SafeAreaView>
     }
     
     const datas = data.results;

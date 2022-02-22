@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { Text, Headline, Colors } from "react-native-paper";
 import React from "react";
 
+
 export const Header = (props: any) => {
   return (
     <View style={styles.container}>
