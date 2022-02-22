@@ -1,5 +1,4 @@
 // App.tsx
-
 import React from 'react';
 import LoginScreen from './src/screens/LoginScreen';
 import { StarshipFeedScreen } from './src/screens/StarshipFeedScreen';
@@ -19,3 +18,4 @@ const App = () => {
 };
 
 export default App;
+
