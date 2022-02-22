@@ -1,12 +1,20 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView ,StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView ,StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Headline, TextInput, Button, Colors } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native'; 
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Header } from '../components/Header';
+import { Routes } from '../navigation/Routes';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
+  
   const [text, setText] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  function navigateToTerms() {
+    navigation.navigate(Routes.TERMS_SCREEN);
+  }
 
   return (
     <SafeAreaView style={styles.login}>
@@ -36,15 +44,16 @@ export default function LoginScreen() {
       </View>
 
       <View>
-        <Text style={styles.conditions}>Read conditions and Terms</Text>
+        <TouchableOpacity onPress={navigateToTerms}><Text>Read conditions and Terms</Text></TouchableOpacity>
       </View>
 
-      {/* <Text>Test</Text> */}
       <StatusBar style="auto" />
     
     </SafeAreaView>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   login: {
